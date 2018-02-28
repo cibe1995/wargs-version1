@@ -28,17 +28,25 @@ public class ThrusterMovement : MonoBehaviour {
         if (OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, controller) == 1.0 && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, controller) == 1.0) //checking specifically for the set controller trigger this needs to be modified
         {
 
-            Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
-            Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
+            Debug.Log("in the loop");
 
-            Debug.Log(primaryAxis);
-            Debug.Log(secondaryAxis);
+            Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick); //looking for the X and Y position of the thumbstick
+            Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick); //looking for the X and Y position of the secondary thumbstick 
+
+            Quaternion angle = OVRInput.GetLocalControllerRotation(controller); //find the angle of the controllers
+
+
+            Debug.Log(angle);
+           // Debug.Log(primaryAxis);
+           // Debug.Log(secondaryAxis);
 
             rb.velocity = transform.up * positionalSpeed;
 
             if (primaryAxis.x != 0.0f || primaryAxis.y != 0.0f) //look at the position of the left thumb stick
             {
-                rb.velocity = CenterEyeAnchor.transform.forward * speed * primaryAxis.y + CenterEyeAnchor.transform.right * speed * primaryAxis.x; //change the rigid body velocity on the playercontroller to this updated one
+                //rb.velocity = CenterEyeAnchor.transform.forward * speed * primaryAxis.y + CenterEyeAnchor.transform.right * speed * primaryAxis.x; //change the rigid body velocity on the playercontroller to this updated one
+
+                rb.velocity = CenterEyeAnchor.transform.forward * speed * angle.y + CenterEyeAnchor.transform.right * speed * angle.x;
 
                 Debug.Log("the velocity is: " + rb.velocity);
             }
@@ -56,7 +64,7 @@ public class ThrusterMovement : MonoBehaviour {
             }
 
 
-            //Quaternion angle = OVRInput.GetLocalControllerRotation(controller); //find the angle of the controllers
+ 
 
             //Debug.Log(angle);
 
