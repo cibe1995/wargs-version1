@@ -6,6 +6,9 @@ TagManager:
   tags:
   - battery
   - doorpanel
+  - Fire
+  - DoorLab
+  - DoorCargo
   layers:
   - Default
   - TransparentFX

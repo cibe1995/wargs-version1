@@ -23,6 +23,11 @@ public class VRTouchThrusters : MonoBehaviour
     VRTouchMove2 refSystem;
     Transform storedTransform;
     Vector3 moveDirection;
+
+
+    public AudioClip thruster; 
+
+
     //   // Use this for initialization
     void Start()
     {
@@ -34,6 +39,9 @@ public class VRTouchThrusters : MonoBehaviour
             return;
         }
         refSystem.mainMovementOverRide = true;
+
+        GetComponent<AudioSource>().playOnAwake = false;
+        GetComponent<AudioSource>().clip = thruster;
     }
 
     //// Update is called once per frame
@@ -42,6 +50,7 @@ public class VRTouchThrusters : MonoBehaviour
         if (refSystem.canMove)
         {
             ThrusterMove();
+            GetComponent<AudioSource>().Play();
         }
     }
     void LateUpdate()
@@ -64,6 +73,8 @@ public class VRTouchThrusters : MonoBehaviour
     {
         VRTouchMove2.InputData InputHolderDown = refSystem.InputReturnDown(refSystem.ForwardButton);
         VRTouchMove2.InputData InputHolderUp = refSystem.InputReturnUp(refSystem.ForwardButton);
+        
+
         if (InputHolderDown.pressed)
         {
             isOn = true;

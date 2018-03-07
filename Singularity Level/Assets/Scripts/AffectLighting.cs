@@ -5,6 +5,8 @@ using UnityEngine;
 public class AffectLighting : MonoBehaviour {
 
     private Animator animator;
+    public GameObject door1;
+    public GameObject door2;
 
 
     private void OnCollisionEnter(Collision collision)
@@ -18,6 +20,12 @@ public class AffectLighting : MonoBehaviour {
 
         animator = gameObject.GetComponent<Animator>();
         animator.SetTrigger("Switch");
+
+        door1.SetActive(false);
+        door2.SetActive(false);
+
+
+
    
     }
 
