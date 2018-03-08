@@ -9,6 +9,7 @@ TagManager:
   - Fire
   - DoorLab
   - DoorCargo
+  - Hands
   layers:
   - Default
   - TransparentFX

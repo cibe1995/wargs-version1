@@ -50,7 +50,7 @@ public class VRTouchThrusters : MonoBehaviour
         if (refSystem.canMove)
         {
             ThrusterMove();
-            GetComponent<AudioSource>().Play();
+          
         }
     }
     void LateUpdate()
@@ -71,6 +71,8 @@ public class VRTouchThrusters : MonoBehaviour
 
     public void ThrusterMove()
     {
+        
+
         VRTouchMove2.InputData InputHolderDown = refSystem.InputReturnDown(refSystem.ForwardButton);
         VRTouchMove2.InputData InputHolderUp = refSystem.InputReturnUp(refSystem.ForwardButton);
         
@@ -79,10 +81,15 @@ public class VRTouchThrusters : MonoBehaviour
         {
             isOn = true;
             storedTransform = InputHolderDown.selectedController;
+
+            GetComponent<AudioSource>().Play();
+
         }
         if (isOn)
         {
-            if(inverted)
+            
+
+            if (inverted)
             {
                 moveDirection += (-storedTransform.forward * speedAdd) * Time.deltaTime;
             }
@@ -110,6 +117,7 @@ public class VRTouchThrusters : MonoBehaviour
         if(breaksHit)
         {
             Brakes(brakePower);
+            GetComponent<AudioSource>().Stop();
         }
         if (InputHolderUp.pressed)
         {

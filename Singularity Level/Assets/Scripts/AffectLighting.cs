@@ -4,29 +4,45 @@ using UnityEngine;
 
 public class AffectLighting : MonoBehaviour {
 
-    private Animator animator;
+    public Animator animator;
     public GameObject door1;
     public GameObject door2;
 
-
-    private void OnCollisionEnter(Collision collision)
+    private void Start()
     {
-        Debug.Log("it worked...");
+        Debug.Log("is this scrip firing?");
+    }
 
-        GameObject lightGameObject = new GameObject("The Light");
-        Light lightComp = lightGameObject.AddComponent<Light>();
-        lightComp.color = Color.blue;
-        lightGameObject.transform.position = new Vector3(0, 5, 0);
+  //  private void OnCollisionEnter(Collision collision)
+   // {
+        //Debug.Log("it worked...");
 
-        animator = gameObject.GetComponent<Animator>();
-        animator.SetTrigger("Switch");
+       // GameObject lightGameObject = new GameObject("The Light");
+       // Light lightComp = lightGameObject.AddComponent<Light>();
+       // lightComp.color = Color.blue;
+       // lightGameObject.transform.position = new Vector3(0, 5, 0);
 
-        door1.SetActive(false);
-        door2.SetActive(false);
+        
 
 
 
    
+  //  }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Hands"))
+        {
+            Debug.Log("it worked");
+
+            animator = gameObject.GetComponent<Animator>();
+            animator.SetTrigger("Switch");
+
+            door1.SetActive(false);
+            door2.SetActive(false);
+
+
+        }
     }
 
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class fixPanel : MonoBehaviour {
 
     public AudioClip fixWeld;
+    public AudioClip repairComplete;
     public GameObject particleEffect;
 
 	// Use this for initialization
@@ -12,6 +13,10 @@ public class fixPanel : MonoBehaviour {
 
         GetComponent<AudioSource>().playOnAwake = false;
         GetComponent<AudioSource>().clip = fixWeld;
+
+        GetComponent<AudioSource>().playOnAwake = false;
+        GetComponent<AudioSource>().clip = repairComplete;
+
 
     }
 	
@@ -23,12 +28,15 @@ public class fixPanel : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("thruster"))
+        if (other.gameObject.CompareTag("Hands"))
         {
             GetComponent<AudioSource>().Play();
 
             particleEffect.SetActive(false);
 
         }
+
+        GetComponent<AudioSource>().Play();
+
     }
 }
