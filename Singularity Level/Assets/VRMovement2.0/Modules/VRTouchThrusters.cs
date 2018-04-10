@@ -31,6 +31,8 @@ public class VRTouchThrusters : MonoBehaviour
     //   // Use this for initialization
     void Start()
     {
+        
+        
         refSystem = GetComponent<VRTouchMove2>();
         if (!refSystem)
         {
@@ -40,18 +42,33 @@ public class VRTouchThrusters : MonoBehaviour
         }
         refSystem.mainMovementOverRide = true;
 
-        GetComponent<AudioSource>().playOnAwake = false;
-        GetComponent<AudioSource>().clip = thruster;
+        
     }
 
     //// Update is called once per frame
     void Update()
     {
+        OVRHapticsClip hapticsClip = new OVRHapticsClip(thruster);
+             if (OVRInput.Get(OVRInput.RawAxis1D.LIndexTrigger) == 1.0f)
+             {
+                OVRHaptics.LeftChannel.Preempt(hapticsClip);
+
+             } 
+             if (OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger) == 1.0f)
+             {
+
+                OVRHaptics.RightChannel.Preempt(hapticsClip);
+             }
+         
         if (refSystem.canMove)
         {
             ThrusterMove();
+
+              
           
         }
+
+     
     }
     void LateUpdate()
     {
@@ -82,7 +99,12 @@ public class VRTouchThrusters : MonoBehaviour
             isOn = true;
             storedTransform = InputHolderDown.selectedController;
 
-            GetComponent<AudioSource>().Play();
+           // GetComponent<AudioSource>().Play();
+           
+           // OVRHapticsClip hapticsClip = new OVRHapticsClip(thruster);
+
+          //  OVRHaptics.LeftChannel.Preempt(hapticsClip);
+           // OVRHaptics.RightChannel.Preempt(hapticsClip);   
 
         }
         if (isOn)
@@ -117,7 +139,7 @@ public class VRTouchThrusters : MonoBehaviour
         if(breaksHit)
         {
             Brakes(brakePower);
-            GetComponent<AudioSource>().Stop();
+           // GetComponent<AudioSource>().Stop();
         }
         if (InputHolderUp.pressed)
         {

@@ -10,7 +10,6 @@ public class PlayIdleAudio : MonoBehaviour {
 	void Start () {
 
         GetComponent<AudioSource>().playOnAwake = false;
-        GetComponent<AudioSource>().clip = idle;
 
     }
 

@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class WargController : MonoBehaviour {
 
-	private Quaternion rotation = Quaternion.Euler(new Vector3(180,-19,-90));
+	private Quaternion rotation = Quaternion.Euler(new Vector3(180,151,-90));
 
+	public VideoPlayer cutscene; 
+	public AudioClip wargingaudio;
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -19,13 +23,20 @@ public class WargController : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter(Collider other)
+	IEnumerator OnTriggerEnter(Collider other)
     {
+	
         if(other.gameObject.CompareTag("headset"))
         {
             Debug.Log("Zappppppp");
 
-            SceneManager.LoadScene(1);
+			GetComponent<AudioSource>().Play();
+
+			cutscene.Play();
+
+		yield return new WaitForSeconds(8);
+
+           SceneManager.LoadScene(1);
             
 
         }
