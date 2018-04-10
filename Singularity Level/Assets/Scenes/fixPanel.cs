@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class fixPanel : MonoBehaviour {
 
-    public AudioClip fixWeld;
+    
     public AudioClip repairComplete;
     public GameObject particleEffect;
+
+	public Light successLight;
+
+	public GameObject pointLights;
 
 	// Use this for initialization
 	void Start () {
 
-        GetComponent<AudioSource>().playOnAwake = false;
-        GetComponent<AudioSource>().clip = fixWeld;
-
-        GetComponent<AudioSource>().playOnAwake = false;
-        GetComponent<AudioSource>().clip = repairComplete;
+//        GetComponent<AudioSource>().playOnAwake = false;
+//        GetComponent<AudioSource>().clip = fixWeld;
+//
+//        GetComponent<AudioSource>().playOnAwake = false;
+//        GetComponent<AudioSource>().clip = repairComplete;
 
 
     }
@@ -34,9 +38,12 @@ public class fixPanel : MonoBehaviour {
 
             particleEffect.SetActive(false);
 
+			Destroy (pointLights);
+
+			Instantiate (successLight, new Vector3 (-28, 13, 120), Quaternion.identity); 
         }
 
-        GetComponent<AudioSource>().Play();
+       
 
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CableWarg : MonoBehaviour {
 
-    
+	public AudioClip idle;
 
 	// Use this for initialization
 	void Start () {
@@ -17,12 +17,16 @@ public class CableWarg : MonoBehaviour {
     // Update is called once per frame
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("battery"))
+        if(other.gameObject.CompareTag("Hands"))
         {
-            Debug.Log("Zappppppp");
+            Debug.Log("Success");
 
-            SceneManager.LoadScene(1);
+			GetComponent<AudioSource>().Play();   
             
+			GameObject onLight = new GameObject ("success light");
+			Light lightComp = onLight.AddComponent<Light>();
+			lightComp.color = Color.white;
+			onLight.transform.position = new Vector3 (0, 1, -5);
 
         }
     }

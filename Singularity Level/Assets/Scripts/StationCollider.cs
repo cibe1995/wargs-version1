@@ -33,6 +33,8 @@ public class StationCollider : MonoBehaviour {
 
 			GetComponent<AudioSource>().Play();
 
+
+
 			cutscene.Play();
 
 			yield return new WaitForSeconds(5);
