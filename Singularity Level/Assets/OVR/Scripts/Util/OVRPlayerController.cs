@@ -204,11 +204,11 @@ public class OVRPlayerController : MonoBehaviour
 	void Update()
 	{
 		//Use keys to ratchet rotation
-		if (Input.GetKeyDown(KeyCode.Q))
-			buttonRotation -= RotationRatchet;
+		//if (Input.GetKeyDown(KeyCode.Q))
+		//	buttonRotation -= RotationRatchet;
 
-		if (Input.GetKeyDown(KeyCode.E))
-			buttonRotation += RotationRatchet;
+		//if (Input.GetKeyDown(KeyCode.E))
+		//	buttonRotation += RotationRatchet;
 	}
 
 	protected virtual void UpdateController()
@@ -421,30 +421,30 @@ public class OVRPlayerController : MonoBehaviour
 				euler.y += Input.GetAxis("Mouse X") * rotateInfluence * 3.25f;
 #endif
 
-			if (SnapRotation)
-			{
+			//if (SnapRotation)
+			//{
 
-				if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft))
-				{
-					if (ReadyToSnapTurn)
-					{
-						euler.y -= RotationRatchet;
-						ReadyToSnapTurn = false;
-					}
-				}
-				else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight))
-				{
-					if (ReadyToSnapTurn)
-					{
-						euler.y += RotationRatchet;
-						ReadyToSnapTurn = false;
-					}
-				}
-				else
-				{
-					ReadyToSnapTurn = true;
-				}
-			}
+				//if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft))
+				//{
+				//	if (ReadyToSnapTurn)
+				//	{
+				//		euler.y -= RotationRatchet;
+				//		ReadyToSnapTurn = false;
+				//	}
+				//}
+				//else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight))
+				//{
+				//	if (ReadyToSnapTurn)
+				//	{
+				//		euler.y += RotationRatchet;
+				//		ReadyToSnapTurn = false;
+				//	}
+				//}
+				//else
+				//{
+				//	ReadyToSnapTurn = true;
+				//}
+			//}
 			else
 			{
 				Vector2 secondaryAxis = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick);
